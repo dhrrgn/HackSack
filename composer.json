@@ -1,0 +1,23 @@
+{
+    "name": "dhrrgn/hack-sack",
+    "description": "A Dependency Inject Container for Hack",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Dan Horrigan",
+            "email": "dan@dhorrigan.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Hrrgn\\HackSack\\": "src/"
+        }
+    },
+    "minimum-stability": "dev",
+    "require": {
+
+    },
+    "require-dev": {
+        "phpunit/phpunit": "3.7.*"
+    }
+}
