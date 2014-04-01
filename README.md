@@ -2,6 +2,11 @@
 
 A Dependency Injection Container for Hack.
 
+#### Credit
+
+This library is influenced by the [Orno/Di](https://github.com/orno/di) library, so you may see some similarities.
+
+
 **Note: This is still a Work In Progress**
 
 ## Requirements
