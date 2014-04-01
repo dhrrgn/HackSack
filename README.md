@@ -18,7 +18,7 @@ HHVM 3.0.0
 ``` php
 <?hh
 
-$container = new Container;
+$container = new Hrrgn\HackSack\Container;
 
 $container->bind('foo', 'stdClass');
 
