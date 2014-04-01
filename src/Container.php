@@ -1,9 +1,11 @@
 <?hh
 namespace Hrrgn\HackSack;
 
+type Mapping = shape('concrete' => mixed, 'singleton' => bool);
+
 class Container
 {
-    protected Map<string, Map<string, mixed>> $mappings;
+    protected Map<string, Mapping> $mappings;
     protected Map<string, mixed> $singletons;
 
     public function __construct(array $mappings = [])
@@ -31,10 +33,10 @@ class Container
             $concrete = $this->wrap($concrete);
         }
 
-        $this->mappings[$alias] = Map {
+        $this->mappings[$alias] = shape(
             'concrete' => $concrete,
             'singleton' => $singleton,
-        };
+        );
     }
 
 
@@ -63,10 +65,10 @@ class Container
         $reflection = new \ReflectionClass($alias);
         $concrete = $reflection->newInstance();
 
-        $this->mappings[$alias] = Map {
+        $this->mappings[$alias] = shape(
             'concrete' => $concrete,
             'singleton' => false,
-        };
+        );
 
         return $concrete;
     }
