@@ -31,10 +31,10 @@ class Container
             $concrete = $this->wrap($concrete);
         }
 
-        $this->mappings[$alias] = [
+        $this->mappings[$alias] = Map {
             'concrete' => $concrete,
             'singleton' => $singleton,
-        ];
+        };
     }
 
 
@@ -62,10 +62,10 @@ class Container
         $reflection = new \ReflectionClass($alias);
         $concrete = $reflection->newInstance();
 
-        $this->mappings[$alias] = [
+        $this->mappings[$alias] = Map {
             'concrete' => $concrete,
             'singleton' => false,
-        ];
+        };
 
         return $concrete;
     }
