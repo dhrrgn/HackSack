@@ -1,9 +1,11 @@
 <?hh
 namespace Hrrgn\HackSack;
 
+use ArrayAccess;
+
 type Mapping = shape('concrete' => mixed, 'singleton' => bool);
 
-class Container
+class Container implements ArrayAccess
 {
     protected Map<string, Mapping> $mappings;
     protected Map<string, mixed> $singletons;
@@ -71,6 +73,26 @@ class Container
         );
 
         return $concrete;
+    }
+
+    public function offsetSet(mixed $key, mixed $value) : this
+    {
+        $this->bind($key, $value, true);
+    }
+
+    public function offsetExists(mixed $offset) : bool
+    {
+        return isset($this->mappings[$offset]);
+    }
+
+    public function offsetUnset(mixed $offset) : this
+    {
+        $this->mappings->removeKey($offset);
+    }
+
+    public function offsetGet(mixed $offset) : mixed
+    {
+        return $this->resolve($offset);
     }
 
     protected function wrap(string $concrete) : (function(Container) : mixed)
