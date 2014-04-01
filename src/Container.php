@@ -47,7 +47,7 @@ class Container
         if ($this->mappings->contains($alias)) {
             $concrete = $this->mappings[$alias]['concrete'];
             if ($concrete instanceof \Closure) {
-                $result = $concrete();
+                $result = $concrete($this);
             } else {
                 $result = $concrete;
             }
@@ -71,8 +71,8 @@ class Container
         return $concrete;
     }
 
-    protected function wrap(string $concrete) : (function() : mixed)
+    protected function wrap(string $concrete) : (function(Container) : mixed)
     {
-        return () ==> $this->resolve($concrete);
+        return ($c) ==> $c->resolve($concrete);
     }
 }
